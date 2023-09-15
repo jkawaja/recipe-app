@@ -12,7 +12,7 @@ function Home() {
   )
 }
 
-function AddRecipe() {
+export function AddRecipe() {
   return (
     <div>
       <h1>Add Recipe</h1>
@@ -21,7 +21,7 @@ function AddRecipe() {
 }
 
 
-function App() {
+export function App() {
   const [recipes, setRecipes] = useState(null);
 
   let recipeData = [
