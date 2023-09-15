@@ -2,11 +2,15 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
+import { Link } from "react-router-dom";
 
 
 function Home() {
   return (
     <div>
+      <nav>
+        <Link to="/addrecipe">Add Recipe</Link>
+      </nav>
       <h1>My Website</h1>
     </div>
   )
@@ -15,6 +19,9 @@ function Home() {
 export function AddRecipe() {
   return (
     <div>
+      <nav>
+        <Link to="/">Recipe List</Link>
+      </nav>
       <h1>Add Recipe</h1>
     </div>
   )
