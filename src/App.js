@@ -1,26 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useState, useEffect } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello from React</h1>
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
-  );
+  const [recipes, setRecipes] = useState(null);
+
+  let recipeData = [
+    {
+      name: "Pasta Tomato",
+      ingredients: "Pasta, Tomato",
+      directions: "Mix the pasta with the tomato.",
+      description: "It's pasta, AND tomato.",
+      image: "",
+    },
+
+    {
+      name: "Potato Soup",
+      ingredients: "Water, Potato",
+      directions: "Mix the water with the potato.",
+      description: "It's water, AND potato. Which makes SOUP.",
+      image: "",
+    },
+
+    {
+      name: "Crushed Lemon",
+      ingredients: "Lemons",
+      directions: "Crush the lemons with a mallet.",
+      description: "It's lemon, but crushed!",
+      image: "",
+    },
+  ];
+
+  useEffect(() => {
+    setRecipes(recipeData);
+  }, []);
+
+  if (recipes == null) return;
+
+  return <div></div>;
 }
 
 export default App;
