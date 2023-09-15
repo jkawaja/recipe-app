@@ -13,7 +13,7 @@ export function RecipeList({ recipes }) {
 function Recipe({ name, ingredients, directions, description, image }) {
   return (
     <div>
-      <p>{name}</p>
+      <h3>{name}</h3>
       <ul>
         <li>{ingredients}</li>
         <li>{directions}</li>
