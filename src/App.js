@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState, useEffect } from "react";
+import { RecipeList } from "./Recipe";
 
 function App() {
   const [recipes, setRecipes] = useState(null);
@@ -37,7 +38,12 @@ function App() {
 
   if (recipes == null) return;
 
-  return <div></div>;
+  return (
+    <div>
+      <h1>Recipe Website</h1>
+      <RecipeList recipes={recipes} />
+    </div>
+  );
 }
 
 export default App;
