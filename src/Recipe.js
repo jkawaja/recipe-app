@@ -8,7 +8,7 @@ function Recipe({ name, image }) {
   return (
     <div>
       <p>{name}</p>
-      <img height={200} src={"./images/stockfood.jpeg"}></img>
+      <img height={200} src={image}></img>
     </div>
   );
 }

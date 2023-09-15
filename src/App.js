@@ -12,7 +12,7 @@ function App() {
       ingredients: "Pasta, Tomato",
       directions: "Mix the pasta with the tomato.",
       description: "It's pasta, AND tomato.",
-      image: "./images/stockfood.jpeg",
+      image: "./images/pastatomato.jpg",
     },
 
     {
@@ -20,7 +20,7 @@ function App() {
       ingredients: "Water, Potato",
       directions: "Mix the water with the potato.",
       description: "It's water, AND potato. Which makes SOUP.",
-      image: "",
+      image: "./images/potatosoup.jpg",
     },
 
     {
@@ -28,7 +28,7 @@ function App() {
       ingredients: "Lemons",
       directions: "Crush the lemons with a mallet.",
       description: "It's lemon, but crushed!",
-      image: "",
+      image: "./images/crushedlemon.jpg",
     },
   ];
 
