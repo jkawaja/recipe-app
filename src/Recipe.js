@@ -1,14 +1,25 @@
 export function RecipeList({ recipes }) {
   return recipes.map((recipe, i) => {
-    return <Recipe name={recipe.name} image={recipe.image} />;
+    return <Recipe 
+      name={recipe.name}
+      ingredients={recipe.ingredients}
+      directions={recipe.directions}
+      description={recipe.description} 
+      image={recipe.image} 
+    />;
   });
 }
 
-function Recipe({ name, image }) {
+function Recipe({ name, ingredients, directions, description, image }) {
   return (
     <div>
       <p>{name}</p>
-      <img height={200} src={image}></img>
+      <ul>
+        <li>{ingredients}</li>
+        <li>{directions}</li>
+        <li>{description}</li>
+      </ul>
+      <img height={200} src={image} alt="This is a dish."/>
     </div>
   );
 }
