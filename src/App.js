@@ -3,6 +3,24 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
 
+
+function Home() {
+  return (
+    <div>
+      <h1>My Website</h1>
+    </div>
+  )
+}
+
+function AddRecipe() {
+  return (
+    <div>
+      <h1>Add Recipe</h1>
+    </div>
+  )
+}
+
+
 function App() {
   const [recipes, setRecipes] = useState(null);
 
@@ -40,7 +58,8 @@ function App() {
 
   return (
     <div>
-      <h1>Recipe Website</h1>
+      <Home/>
+      <h1>Recipe List</h1>
       <RecipeList recipes={recipes} />
     </div>
   );
