@@ -12,7 +12,7 @@ function App() {
       ingredients: "Pasta, Tomato",
       directions: "Mix the pasta with the tomato.",
       description: "It's pasta, AND tomato.",
-      image: "",
+      image: "./images/stockfood.jpeg",
     },
 
     {
