@@ -15,9 +15,9 @@ function Recipe({ name, ingredients, directions, description, image }) {
     <div>
       <h3>{name}</h3>
       <ul>
-        <li>{ingredients}</li>
-        <li>{directions}</li>
         <li>{description}</li>
+        <li>Ingredients: {ingredients}</li>
+        <li>Directions: {directions}</li>
       </ul>
       <img height={200} src={image} alt="This is a dish."/>
     </div>

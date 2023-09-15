@@ -2,7 +2,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+
 
 
 function Home() {
@@ -23,6 +24,15 @@ export function AddRecipe() {
         <Link to="/">Recipe List</Link>
       </nav>
       <h1>Add Recipe</h1>
+      <Outlet />
+    </div>
+  )
+}
+
+export function InputFields() {
+  return (
+    <div>
+      <h1>Data Fields Go Here:</h1>
     </div>
   )
 }
