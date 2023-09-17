@@ -2,8 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
-import { Link, Outlet } from "react-router-dom";
-import recipeFile from './data/recipes.json'
+import { Link } from "react-router-dom";
 
 
 
@@ -19,13 +18,40 @@ function Home() {
 }
 
 export function AddRecipe() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let object = {
+      name: e.target.name.value,
+      description: e.target.description.value,
+      ingredients: e.target.ingredients.value,
+      directions: e.target.directions.value
+    }
+    console.log(object)
+  }
+
   return (
     <div>
       <nav>
         <Link to="/">Recipe List</Link>
       </nav>
       <h1>Add Recipe</h1>
-      <Outlet />
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <label for="name">Recipe Name: </label>
+        <input type="text" name="name" id="name"></input>
+        <br/>
+        <label for="description">Recipe Description: </label>
+        <input type="text" name="description" id="description"></input>
+        <br/>
+        <label for="ingredients">Recipe Ingredients: </label>
+        <input type="text" name="ingredients" id="ingredients"></input>
+        <br/>
+        <label for="directions">Recipe Directions: </label>
+        <input type="text" name="directions" id="directions"></input>
+        <br/>
+        <label for="image">Recipe Image: </label>
+        <input type="file" name="image" accept="image/png, image/jpeg, image/jpg"></input>
+        <button>Submit</button>
+      </form>
     </div>
   )
 }
@@ -41,12 +67,19 @@ export function InputFields() {
 
 export function App() {
   const [recipes, setRecipes] = useState(null);
-
-  let recipeData = recipeFile;
-  
-  useEffect(() => {
-    setRecipes(recipeData);
+  useEffect(()=> {
+    fetch('./data/recipes.json')
+    .then((response) => {return response.json()})
+    .then(setRecipes);
   }, []);
+
+  // console.log(recipes)
+
+  // const [recipes, setRecipes] = useState(null);
+  // let recipeData = recipeFile;
+  //   useEffect(() => {
+  //   setRecipes(recipeData);
+  // }, [recipeData]);
 
   if (recipes == null) return;
 
