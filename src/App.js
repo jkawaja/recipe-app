@@ -3,6 +3,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
 import { Link, Outlet } from "react-router-dom";
+import recipeFile from './data/recipes.json'
 
 
 
@@ -41,32 +42,8 @@ export function InputFields() {
 export function App() {
   const [recipes, setRecipes] = useState(null);
 
-  let recipeData = [
-    {
-      name: "Pasta Tomato",
-      ingredients: "Pasta, Tomato",
-      directions: "Mix the pasta with the tomato.",
-      description: "It's pasta, AND tomato.",
-      image: "./images/pastatomato.jpg",
-    },
-
-    {
-      name: "Potato Soup",
-      ingredients: "Water, Potato",
-      directions: "Mix the water with the potato.",
-      description: "It's water, AND potato. Which makes SOUP.",
-      image: "./images/potatosoup.jpg",
-    },
-
-    {
-      name: "Crushed Lemon",
-      ingredients: "Lemons",
-      directions: "Crush the lemons with a mallet.",
-      description: "It's lemon, but crushed!",
-      image: "./images/crushedlemon.jpg",
-    },
-  ];
-
+  let recipeData = recipeFile;
+  
   useEffect(() => {
     setRecipes(recipeData);
   }, []);
