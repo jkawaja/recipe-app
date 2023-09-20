@@ -24,10 +24,16 @@ export function AddRecipe() {
       name: e.target.name.value,
       description: e.target.description.value,
       ingredients: e.target.ingredients.value,
-      directions: e.target.directions.value
+      directions: e.target.directions.value,
+      image: e.target.image.value
     }
     console.log(object)
   }
+  const[value, setValue] = useState('food1');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   return (
     <div>
@@ -48,9 +54,16 @@ export function AddRecipe() {
         <label for="directions">Recipe Directions: </label>
         <input type="text" name="directions" id="directions"></input>
         <br/>
-        <label for="image">Recipe Image: </label>
-        <input type="file" name="image" accept="image/png, image/jpeg, image/jpg"></input>
+        <label>Recipe Image: 
+          <select image={value} onChange={handleChange} name="image">
+            <option value="food1">Food 1</option>
+            <option value="food2">Food 2</option>
+            <option value="food3">Food 3</option>
+          </select>
+        </label>
+        <br></br>
         <button>Submit</button>
+        <p>We eat {value}</p>
       </form>
     </div>
   )
