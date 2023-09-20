@@ -18,6 +18,8 @@ function Home() {
 }
 
 export function AddRecipe() {
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     let object = {
@@ -28,6 +30,7 @@ export function AddRecipe() {
       image: e.target.image.value
     }
     console.log(object)
+    return object;
   }
   const[value, setValue] = useState('food1');
 
@@ -56,9 +59,9 @@ export function AddRecipe() {
         <br/>
         <label>Recipe Image: 
           <select image={value} onChange={handleChange} name="image">
-            <option value="food1">Food 1</option>
-            <option value="food2">Food 2</option>
-            <option value="food3">Food 3</option>
+            <option value="./images/food1">Food 1</option>
+            <option value="./images/food2">Food 2</option>
+            <option value="./images/food3">Food 3</option>
           </select>
         </label>
         <br></br>
