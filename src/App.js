@@ -73,11 +73,12 @@ export function App() {
   if (recipes == null) return;
 
   return (
-    <Routes>
-      <Route path="/" element={<RecipeList recipes={recipes} setRecipes={setRecipes}/>}  />
-      <Route path="/addrecipe" element={<AddRecipe recipes={recipes} setRecipes={setRecipes}/>}/>
-    </Routes>
-
+    <>
+      <Routes>
+        <Route path="/" element={<><Home/><RecipeList recipes={recipes} setRecipes={setRecipes}/></>}/>
+        <Route path="/addrecipe" element={<AddRecipe recipes={recipes} setRecipes={setRecipes}/>}/>
+      </Routes>
+    </>
   );
 }
 
