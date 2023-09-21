@@ -1,9 +1,8 @@
-import { useState } from "react";
-
 export function RecipeList({ recipes }) {
-  return recipes.map((recipe) => {
+  return recipes.map((recipe, i) => {
+    console.log(i)
     return <Recipe 
-      key={recipe.id}
+      id={i}
       name={recipe.name}
       ingredients={recipe.ingredients}
       directions={recipe.directions}
@@ -13,17 +12,15 @@ export function RecipeList({ recipes }) {
   });
 }
 
+  const remove = (id) => {
+    const element = document.getElementById(id)
+    element.remove();
+  }
 
-function Recipe({ name, ingredients, directions, description, image }) {
-  const [visible, setVisible] = useState(true);
-
-  const removeRecipe = () => {
-    setVisible((prev) => !prev);
-  }  
+function Recipe({ id, name, ingredients, directions, description, image }) {
   return (  
     <div>    
-      {visible && (
-        <div key={name}>
+      <div id={id}>
           <h3>{name}</h3>
             <ul>
               <li>{description}</li>
@@ -31,9 +28,8 @@ function Recipe({ name, ingredients, directions, description, image }) {
               <li>Directions: {directions}</li>
             </ul>
           <img height={200} src={image} alt="This is a dish."/><br/>
-        <button onClick={removeRecipe} type="button">REMOVE</button>
+        <button onClick={() => remove(id)} type="button">REMOVE</button>
         </div>
-      )}
     </div>
   );
 }
