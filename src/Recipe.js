@@ -1,9 +1,7 @@
-import { Link} from "react-router-dom"
-
 export function RecipeList({ recipes, setRecipes }) {
   return recipes.map((recipe, i) => {
     return (
-    <div>
+    <>
       <Recipe 
         key={i}
         name={recipe.name}
@@ -14,13 +12,13 @@ export function RecipeList({ recipes, setRecipes }) {
         setRecipes={setRecipes}
         recipes={recipes}
       />
-    </div>
+    </>
   )});
 }
 
 function Recipe({ name, ingredients, directions, description, image, recipes, setRecipes}) {
   return ( 
-    <div>
+    <>
         <h3>{name}</h3>
           <ul>
             <li>{description}</li>
@@ -37,14 +35,6 @@ function Recipe({ name, ingredients, directions, description, image, recipes, se
           setRecipes(adjustedRecipes);
         }
       }} >REMOVE</button>
-    </div>
+    </>
   );
 }
-
-
-{/* <div>
-<nav>
-  <Link to="/AddRecipe">Add Recipe</Link>
-</nav>
-<h1>Recipe List</h1>
-</div> */}
