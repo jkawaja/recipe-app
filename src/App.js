@@ -1,41 +1,32 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 
-function Home() {
+export function Home() {
   return (
     <div>
       <nav>
         <Link to="/addrecipe">Add Recipe</Link>
       </nav>
-      <h1>My Website</h1>
+      <h1>Recipe List</h1>
     </div>
   )
 }
 
-export function AddRecipe() {
-
-
+export function AddRecipe({recipes, setRecipes}) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    let object = {
+    let addedRecipe = {
       name: e.target.name.value,
       description: e.target.description.value,
       ingredients: e.target.ingredients.value,
       directions: e.target.directions.value,
       image: e.target.image.value
     }
-    console.log(object)
-    return object;
+    recipes.push(addedRecipe)
+    setRecipes(recipes);
   }
-  const[value, setValue] = useState('food1');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
   return (
     <div>
       <nav>
@@ -56,23 +47,22 @@ export function AddRecipe() {
         <input type="text" name="directions" id="directions"></input>
         <br/>
         <label>Recipe Image: 
-          <select image={value} onChange={handleChange} name="image">
+          <select for="image" name="image">
             <option value="./images/food1.png">Food 1</option>
             <option value="./images/food2.png">Food 2</option>
             <option value="./images/food3.png">Food 3</option>
           </select>
         </label>
         <br></br>
-        <button>Submit</button>
-        {/* <p>We eat {value}</p> */}
-        {/* <RecipeList addRecipes={recipe} /> */}
+        <button onChange={() => handleSubmit}>Submit</button>
       </form>
     </div>
   )
 }
 
-
 export function App() {
+  const storedRecipes = JSON.parse(localStorage.getItem('newRecipe'))
+  console.log(storedRecipes)
   const [recipes, setRecipes] = useState(null);
   useEffect(()=> {
     fetch('./data/recipes.json')
@@ -83,16 +73,12 @@ export function App() {
   if (recipes == null) return;
 
   return (
-    <div>
-      <Home/>
-      <h1>Recipe List</h1>
-      <RecipeList recipes={recipes} />
-      {/* <AddRecipe recipes{newRecipes} /> */}
-    </div>
+    <Routes>
+      <Route path="/" element={<RecipeList recipes={recipes} setRecipes={setRecipes}/>}  />
+      <Route path="/addrecipe" element={<AddRecipe recipes={recipes} setRecipes={setRecipes}/>}/>
+    </Routes>
+
   );
 }
-
-// Create to Recipe.js a new function called 'function NewRecipe' that takes ... 
-// Something from the AddRecipe.... so .... look at https://scrimba.com/scrim/crdLpnSG
 
 export default App;
