@@ -1,21 +1,26 @@
+import { Link } from "react-router-dom";
+
 export function RecipeList({ recipes }) {
-  return recipes.map((recipe, i) => {
-    console.log(i)
-    return <Recipe 
-      id={i}
-      name={recipe.name}
-      ingredients={recipe.ingredients}
-      directions={recipe.directions}
-      description={recipe.description} 
-      image={recipe.image} 
-    />;
-  });
+  return recipes.map((recipe, setRecipes, i) => {
+    return (
+    <div>
+      <nav>
+        <Link to="/AddRecipe">Add Recipe</Link>
+      </nav>
+      <Recipe 
+        id={i}
+        name={recipe.name}
+        ingredients={recipe.ingredients}
+        directions={recipe.directions}
+        description={recipe.description} 
+        image={recipe.image} 
+        setRecipes={setRecipes}
+      />
+    </div>
+  )});
 }
 
-  const remove = (id) => {
-    const element = document.getElementById(id)
-    element.remove();
-  }
+
 
 function Recipe({ id, name, ingredients, directions, description, image }) {
   return (  
@@ -28,8 +33,10 @@ function Recipe({ id, name, ingredients, directions, description, image }) {
               <li>Directions: {directions}</li>
             </ul>
           <img height={200} src={image} alt="This is a dish."/><br/>
-        <button onClick={() => remove(id)} type="button">REMOVE</button>
+        <button onClick={() => } type="button">REMOVE</button>
         </div>
     </div>
   );
 }
+
+
