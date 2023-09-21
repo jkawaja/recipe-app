@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
 import { Link } from "react-router-dom";
 
-
-
 function Home() {
   return (
     <div>
@@ -19,7 +17,7 @@ function Home() {
 
 export function AddRecipe() {
 
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let object = {
@@ -59,14 +57,15 @@ export function AddRecipe() {
         <br/>
         <label>Recipe Image: 
           <select image={value} onChange={handleChange} name="image">
-            <option value="./images/food1">Food 1</option>
-            <option value="./images/food2">Food 2</option>
-            <option value="./images/food3">Food 3</option>
+            <option value="./images/food1.png">Food 1</option>
+            <option value="./images/food2.png">Food 2</option>
+            <option value="./images/food3.png">Food 3</option>
           </select>
         </label>
         <br></br>
         <button>Submit</button>
-        <p>We eat {value}</p>
+        {/* <p>We eat {value}</p> */}
+        {/* <RecipeList addRecipes={recipe} /> */}
       </form>
     </div>
   )
@@ -104,8 +103,12 @@ export function App() {
       <Home/>
       <h1>Recipe List</h1>
       <RecipeList recipes={recipes} />
+      {/* <AddRecipe recipes{newRecipes} /> */}
     </div>
   );
 }
+
+// Create to Recipe.js a new function called 'function NewRecipe' that takes ... 
+// Something from the AddRecipe.... so .... look at https://scrimba.com/scrim/crdLpnSG
 
 export default App;
