@@ -71,14 +71,6 @@ export function AddRecipe() {
   )
 }
 
-export function InputFields() {
-  return (
-    <div>
-      <h1>Data Fields Go Here:</h1>
-    </div>
-  )
-}
-
 
 export function App() {
   const [recipes, setRecipes] = useState(null);
@@ -87,14 +79,6 @@ export function App() {
     .then((response) => {return response.json()})
     .then(setRecipes);
   }, []);
-
-  // console.log(recipes)
-
-  // const [recipes, setRecipes] = useState(null);
-  // let recipeData = recipeFile;
-  //   useEffect(() => {
-  //   setRecipes(recipeData);
-  // }, [recipeData]);
 
   if (recipes == null) return;
 
