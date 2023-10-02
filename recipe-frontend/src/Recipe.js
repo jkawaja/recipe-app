@@ -29,7 +29,7 @@ function Recipe({ name, ingredients, directions, description, image, recipes, se
       <button onClick={() => {
         let adjustedRecipes = [];
         for (let i=0; i<recipes.length; i++) {
-          if (recipes[i].name != name) {
+          if (recipes[i].name !== name) {
             adjustedRecipes.push(recipes[i]);
           }
           setRecipes(adjustedRecipes);
