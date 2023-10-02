@@ -3,6 +3,7 @@
 # dependencies
 /recipe-frontend/node_modules
 /recipe-backend/node_modules
+/recipe-backend/mongo-db-data
 /recipe-frontend/.pnp
 /recipe-backend/.pnp
 /recipe-frontend/.pnp.js
