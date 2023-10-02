@@ -27,17 +27,17 @@ app.post('/api/removeRecipe', async (req, res) => {
 
   const result = await db.collection('recipes').deleteOne({name:req.body.recipename});
   console.log(result.deletedCount)
-
-  console.log(req.body.recipename);
-  let adjustedRecipes = [];
-  for (let i=0; i<recipeData.length; i++) {
-    if (recipeData[i].name != req.body.recipename) {
-      adjustedRecipes.push(recipeData[i]);
-    }
-  }
-  recipeData = adjustedRecipes;
-
   res.sendStatus(200);
+  // console.log(req.body.recipename);
+  // let adjustedRecipes = [];
+  // for (let i=0; i<recipeData.length; i++) {
+  //   if (recipeData[i].name != req.body.recipename) {
+  //     adjustedRecipes.push(recipeData[i]);
+  //   }
+  // }
+  // recipeData = adjustedRecipes;
+
+  // 
 })
 
 app.listen(4000, () => {
