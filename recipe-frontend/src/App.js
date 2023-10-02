@@ -65,7 +65,7 @@ export function App() {
   console.log(storedRecipes)
   const [recipes, setRecipes] = useState(null);
   useEffect(()=> {
-    fetch('./data/recipes.json')
+    fetch('/api/recipes')
     .then((response) => {return response.json()})
     .then(setRecipes);
   }, []);
