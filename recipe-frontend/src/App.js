@@ -61,8 +61,6 @@ export function AddRecipe({recipes, setRecipes}) {
 }
 
 export function App() {
-  const storedRecipes = JSON.parse(localStorage.getItem('newRecipe'))
-  console.log(storedRecipes)
   const [recipes, setRecipes] = useState(null);
   useEffect(()=> {
     fetch('/api/recipes')
