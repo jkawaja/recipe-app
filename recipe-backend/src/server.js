@@ -15,7 +15,6 @@ app.get('/api/recipes', async (req, res) => {
 
   const data = await db.collection('recipes').find({}).toArray();
 
-  console.log(data);
   res.json(data);
 
 })
@@ -23,21 +22,20 @@ app.get('/api/recipes', async (req, res) => {
 app.post('/api/removeRecipe', async (req, res) => {
   const client = new MongoClient("mongodb://127.0.0.1:27017");
   await client.connect();
+  
   const db = client.db('react-recipe-db');
 
   const result = await db.collection('recipes').deleteOne({name:req.body.recipename});
-  console.log(result.deletedCount)
-  res.sendStatus(200);
-  // console.log(req.body.recipename);
-  // let adjustedRecipes = [];
-  // for (let i=0; i<recipeData.length; i++) {
-  //   if (recipeData[i].name != req.body.recipename) {
-  //     adjustedRecipes.push(recipeData[i]);
-  //   }
-  // }
-  // recipeData = adjustedRecipes;
 
-  // 
+  res.sendStatus(200);
+})
+
+app.post('/api/addRecipe', async (req, res) => {
+  const client = new MongoClient("mongodb://127.0.0.1:27017");
+  await client.connect();
+  const db = client.db('react-recipe-db');
+
+  const result = await db.collection('recipes').insertOne({name:req.body.recipename})
 })
 
 app.listen(4000, () => {
