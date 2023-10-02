@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "name": "Pasta Tomato",
     "ingredients": "Pasta, Tomato",
     "directions": "Mix the pasta with the tomato.",
@@ -8,7 +7,6 @@
     "image": "./images/pastatomato.jpg"
   },
   {
-    "id": 2,
     "name": "Potato Soup",
     "ingredients": "Water, Potato",
     "directions": "Mix the water with the potato.",
@@ -16,7 +14,6 @@
     "image": "./images/potatosoup.jpg"
   },
   {
-    "id": 3,
     "name": "Crushed Lemon",
     "ingredients": "Lemons",
     "directions": "Crush the lemons with a mallet.",
