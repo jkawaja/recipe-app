@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
 import { Link, Route, Routes } from "react-router-dom";
+import axios from 'axios';
 
 export function Home() {
   return (
@@ -62,12 +63,12 @@ export function AddRecipe({recipes, setRecipes}) {
 
 export function App() {
   const [recipes, setRecipes] = useState(null);
-  useEffect(()=> {
+
+  useEffect(() => {
     fetch('/api/recipes')
     .then((response) => {return response.json()})
     .then(setRecipes);
   }, []);
-
   if (recipes == null) return;
 
   return (
@@ -81,3 +82,13 @@ export function App() {
 }
 
 export default App;
+
+
+  // useEffect(() => {
+  //   const loadRecipeInfo = async () => {
+  //     const response = await axios.get('/api/recipes')
+  //     const newRecipeInfo = response.data;
+  //     setRecipes(newRecipeInfo);
+  //   }
+  //   loadRecipeInfo();
+  // }, []);
