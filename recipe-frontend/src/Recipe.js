@@ -1,5 +1,3 @@
-// import axios from 'axios';
-
 export function RecipeList({ recipes, setRecipes }) {
   return recipes.map((recipe, i) => {
     return (
