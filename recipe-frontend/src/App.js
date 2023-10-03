@@ -2,7 +2,6 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
 import { Link, Route, Routes } from "react-router-dom";
-import axios from 'axios';
 
 export function Home() {
   return (
@@ -65,6 +64,9 @@ export function AddRecipe({recipes, setRecipes, name, ingredients, directions, d
             <option value="./images/food2.png">Food 2</option>
             <option value="./images/food3.png">Food 3</option>
           </select>
+          {/* <form action="/api/addImage" method="post" enctype="multipart/form-data">
+            <input type="file" name="recipes" />
+          </form>    */}
         </label>
         <br></br>
         <button onChange={() => handleSubmit}>Submit</button>
