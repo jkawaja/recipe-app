@@ -15,19 +15,31 @@ export function Home() {
   )
 }
 
-export function AddRecipe({recipes, setRecipes}) {
+export function AddRecipe({recipes, setRecipes, name, ingredients, directions, description, image}) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    let addedRecipe = {
-      name: e.target.name.value,
-      description: e.target.description.value,
-      ingredients: e.target.ingredients.value,
-      directions: e.target.directions.value,
-      image: e.target.image.value
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("name", e.target.name.value);
+    urlencoded.append("ingredients", e.target.ingredients.value);
+    urlencoded.append("directions", e.target.directions.value);
+    urlencoded.append("description", e.target.description.value);
+    urlencoded.append("image", e.target.image.value);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow'
+    };
+
+    fetch("/api/addRecipe", requestOptions)
+      .then(response => response.json())
+      .then(setRecipes)
+      .catch(error => console.log('error', error));
     }
-    recipes.push(addedRecipe)
-    setRecipes(recipes);
-  }
   return (
     <div>
       <nav>
@@ -92,3 +104,38 @@ export default App;
   //   }
   //   loadRecipeInfo();
   // }, []);
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // let addedRecipe = {
+  //   //   name: e.target.name.value,
+  //   //   description: e.target.description.value,
+  //   //   ingredients: e.target.ingredients.value,
+  //   //   directions: e.target.directions.value,
+  //   //   image: e.target.image.value
+  //   // }
+  //   // recipes.push(addedRecipe)
+  //   // setRecipes(recipes);
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+  //   var urlencoded = new URLSearchParams();
+  //   urlencoded.append("name", "Test Name");
+  //   urlencoded.append("ingredients", "Test Ingredients");
+  //   urlencoded.append("directions", "Test Directions");
+  //   urlencoded.append("description", "Test Description");
+  //   urlencoded.append("image", "./images/food1.png");
+
+  //   var requestOptions = {
+  //     method: 'POST',
+  //     headers: myHeaders,
+  //     body: urlencoded,
+  //     redirect: 'follow'
+  //   };
+
+  //   fetch("/api/addRecipe", requestOptions)
+  //     .then(response => response.json())
+  //     .then(setRecipes)
+  //     .catch(error => console.log('error', error));
+  //   }
