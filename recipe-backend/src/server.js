@@ -46,15 +46,13 @@ app.post('/api/addRecipe', async (req, res) => {
   res.json(data);
 })
 
-app.post('/api/addImage', upload.single('recipes'), async (req, res, next) => {
-  const client = new MongoClient("mongodb://127.0.0.1:27017");
-  await client.connect();
-  const db = client.db('react-recipe-db');
-  const result = await.db.collection
-
-  // req.file is the `avatar` file
-  // req.body will hold the text fields, if there were any
-})
+// app.post('/api/addImage', upload.single('recipes'), async (req, res, next) => {
+//   const client = new MongoClient("mongodb://127.0.0.1:27017");
+//   await client.connect();
+//   const db = client.db('react-recipe-db');
+//   // req.file is the `avatar` file
+//   // req.body will hold the text fields, if there were any
+// })
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
