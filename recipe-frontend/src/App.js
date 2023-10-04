@@ -14,38 +14,14 @@ export function Home() {
   )
 }
 
-export function AddRecipe({recipes, setRecipes, name, ingredients, directions, description, image}) {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-    var urlencoded = new URLSearchParams();
-    urlencoded.append("name", e.target.name.value);
-    urlencoded.append("ingredients", e.target.ingredients.value);
-    urlencoded.append("directions", e.target.directions.value);
-    urlencoded.append("description", e.target.description.value);
-    urlencoded.append("image", e.target.image.value);
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: 'follow'
-    };
-
-    fetch("/api/addRecipe", requestOptions)
-      .then(response => response.json())
-      .then(setRecipes)
-      .catch(error => console.log('error', error));
-    }
+export function AddRecipe() {
   return (
     <div>
       <nav>
         <Link to="/">Recipe List</Link>
       </nav>
       <h1>Add Recipe</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form action="/api/addRecipe" method="POST" encType="multipart/form-data" >
         <label for="name">Recipe Name: </label>
         <input type="text" name="name" id="name"></input>
         <br/>
@@ -59,19 +35,10 @@ export function AddRecipe({recipes, setRecipes, name, ingredients, directions, d
         <input type="text" name="directions" id="directions"></input>
         <br/>
         <label>Recipe Image: 
-          <select for="image" name="image">
-            <option value="./images/food1.png">Food 1</option>
-            <option value="./images/food2.png">Food 2</option>
-            <option value="./images/food3.png">Food 3</option>
-          </select>
-          <h1>File Upload</h1>
-          <form action="/upload" method="POST" enctype="multipart/form-data">
-          <input type="file" name="file" required/>
-          <button type="submit">Upload</button>
-          </form>
+          <input id="recipeFileUpload" type="file" name="filename" required/>
         </label>
         <br></br>
-        <button onChange={() => handleSubmit}>Submit</button>
+        <button type="submit" >Submit</button>
       </form>
     </div>
   )
@@ -96,7 +63,6 @@ export function App() {
       </Routes>
     </header>
     </>
-    
   );
 }
 
