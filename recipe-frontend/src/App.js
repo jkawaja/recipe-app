@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
 import { Link, Route, Routes } from "react-router-dom";
-import { Navbar, Nav, Card, Button } from 'react-bootstrap'
+import { Navbar, Nav, Card } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Home() {
@@ -28,7 +28,6 @@ export function AddRecipe() {
       </Navbar>
       <Card>
       <h1>Add Recipe</h1>
-      <div class="form-label">
       <form action="/api/addRecipe" method="POST" encType="multipart/form-data" >
         <label for="name">Recipe Name: </label>
         <input type="text" name="name" id="name"></input>
@@ -46,10 +45,8 @@ export function AddRecipe() {
           <input id="recipeFileUpload" type="file" name="filename" required/>
         </label>
         <br></br>
-        <Button type="submit" >Submit</Button>
+        <button type="submit" >Submit</button>
       </form>
-      </div>
-      
       </Card>
     </div>
   )

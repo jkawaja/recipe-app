@@ -18,12 +18,11 @@ app.get(/^(?!\/api).+/, (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
-
 const port = 4000;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './recipe-backend/public/images');
+    cb(null, '../recipe-frontend/public/images/');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname);
@@ -41,9 +40,10 @@ app.post("/api/addRecipe", upload.single('filename'), async (req, res) => {
     ingredients:req.body.ingredients,
     directions:req.body.directions,
     description:req.body.description,
-    image:req.file.filename})
-  const data = await db.collection('recipes').find({}).toArray();
+    image:"./images/"+req.file.filename})
+  await db.collection('recipes').find({}).toArray();
 });
+
 
 
 app.get('/api/recipes', async (req, res) => {
@@ -60,20 +60,6 @@ app.post('/api/removeRecipe', async (req, res) => {
   await client.connect();
   const db = client.db('react-recipe-db');
   const result = await db.collection('recipes').deleteOne({name:req.body.recipename});
-  const data = await db.collection('recipes').find({}).toArray();
-  res.json(data);
-})
-
-app.post('/api/oldAddRecipe', async (req, res) => {
-  const client = new MongoClient("mongodb://127.0.0.1:27017");
-  await client.connect();
-  const db = client.db('react-recipe-db');
-  const result = await db.collection('recipes').insertOne(
-    {name:req.body.name,
-    ingredients:req.body.ingredients,
-    directions:req.body.directions,
-    description:req.body.description,
-    image:req.body.image})
   const data = await db.collection('recipes').find({}).toArray();
   res.json(data);
 })
