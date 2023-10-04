@@ -25,7 +25,7 @@ function Recipe({ name, ingredients, directions, description, image, recipes, se
     <>
       
         <Card className="mb-3" style={{ width: '18rem' }}>
-        <Card.Img fluid width={100} style={{ marginTop: '15px' }} variant="top" src={image} alt="This is a dish."/>
+        <Card.Img fluid width={100} style={{ marginTop: '15px' }} variant="top" src={"./images/"+image} alt="This is a dish."/>
         <Card.Body>
         <Card.Title>{name}</Card.Title>
           <Card.Text> {description}</Card.Text>
