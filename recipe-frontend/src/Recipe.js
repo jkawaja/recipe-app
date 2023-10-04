@@ -1,3 +1,7 @@
+import { Button, Card, ListGroup } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css';
+
 export function RecipeList({ recipes, setRecipes }) {
   return recipes.map((recipe, i) => {
     return (
@@ -19,14 +23,17 @@ export function RecipeList({ recipes, setRecipes }) {
 function Recipe({ name, ingredients, directions, description, image, recipes, setRecipes}) { 
   return ( 
     <>
-        <h3>{name}</h3>
-          <ul>
-            <li>{description}</li>
-            <li>Ingredients: {ingredients}</li>
-            <li>Directions: {directions}</li>
-          </ul>
-        <img height={200} src={image} alt="This is a dish."/><br/>
-      <button onClick={ () => {
+      
+        <Card className="mb-3" style={{ width: '18rem' }}>
+        <Card.Img fluid width={100} style={{ marginTop: '15px' }} variant="top" src={image} alt="This is a dish."/>
+        <Card.Body>
+        <Card.Title>{name}</Card.Title>
+          <Card.Text> {description}</Card.Text>
+          <ListGroup variant="flush">
+            <ListGroup.Item>Ingredients: {ingredients}</ListGroup.Item>
+            <ListGroup.Item>Directions: {directions}</ListGroup.Item>
+          </ListGroup>        
+      <Button onClick={ () => {
               var myHeaders = new Headers();
               myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
         
@@ -45,65 +52,9 @@ function Recipe({ name, ingredients, directions, description, image, recipes, se
               .then(setRecipes)
               .catch(error => console.log('error', error));
       }
-    } >REMOVE</button>
+    }>Remove</Button>
+    </Card.Body>
+    </Card>
     </>
   );
 }
-
-  // const removeRecipe = async () => {
-  //   const response = await axios.post('/api/removeRecipe');
-  //   const updatedRecipe = response.data;
-  //   setRecipes(updatedRecipe);
-  // }
-
-
-  // function Recipe({ name, ingredients, directions, description, image, recipes, setRecipes}) { 
-
-//   const handleRemoveRecipe = async ({name}) => {
-//     const response = await axios.post('/api/removeRecipe', {name});
-//   }
-  
-//   return ( 
-//     <>
-//         <h3>{name}</h3>
-//           <ul>
-//             <li>{description}</li>
-//             <li>Ingredients: {ingredients}</li>
-//             <li>Directions: {directions}</li>
-//           </ul>
-//         <img height={200} src={image} alt="This is a dish."/><br/>
-//       <button onClick={handleRemoveRecipe({name})} >REMOVE</button>
-//     </>
-//   );
-// }
-
-              // .then(result => {
-              //   let adjustedRecipes = [];
-              //   for (let i=0; i<recipes.length; i++) {
-              //     if (recipes[i].name !== name) {
-              //       adjustedRecipes.push(recipes[i]);
-              //     }
-              //     setRecipes(adjustedRecipes);
-              //   }
-              // })
-
-
-                // const removeRecipe = async () => {
-  //   const response = await axios.post('/api/removeRecipe');
-  //   const updatedRecipe = response.data;
-  //   setRecipes(updatedRecipe);
-  // }
-
-  // const handleRemoveRecipe = async () => {
-  //   const response = await axios.post('/api/removeRecipe');
-  //   const updatedRecipe = response.data;
-  //   setRecipes(updatedRecipe);
-  // }
-  
-  // const handleRemoveRecipe = () => {
-  //   // make API call to backend to remove the current bicyle
-
-  //   // if the call is successful, need to update the use state hook ( setBikes)
-    
-
-  // }
