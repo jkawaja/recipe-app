@@ -64,9 +64,11 @@ export function AddRecipe({recipes, setRecipes, name, ingredients, directions, d
             <option value="./images/food2.png">Food 2</option>
             <option value="./images/food3.png">Food 3</option>
           </select>
-          {/* <form action="/api/addImage" method="post" enctype="multipart/form-data">
-            <input type="file" name="recipes" />
-          </form>    */}
+          <h1>File Upload</h1>
+          <form action="/upload" method="POST" enctype="multipart/form-data">
+          <input type="file" name="file" required/>
+          <button type="submit">Upload</button>
+          </form>
         </label>
         <br></br>
         <button onChange={() => handleSubmit}>Submit</button>
@@ -87,57 +89,15 @@ export function App() {
 
   return (
     <>
+    <header className="App-header">
       <Routes>
         <Route path="/" element={<><Home/><RecipeList recipes={recipes} setRecipes={setRecipes}/></>}/>
         <Route path="/addrecipe" element={<AddRecipe recipes={recipes} setRecipes={setRecipes}/>}/>
       </Routes>
+    </header>
     </>
+    
   );
 }
 
 export default App;
-
-
-  // useEffect(() => {
-  //   const loadRecipeInfo = async () => {
-  //     const response = await axios.get('/api/recipes')
-  //     const newRecipeInfo = response.data;
-  //     setRecipes(newRecipeInfo);
-  //   }
-  //   loadRecipeInfo();
-  // }, []);
-
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // let addedRecipe = {
-  //   //   name: e.target.name.value,
-  //   //   description: e.target.description.value,
-  //   //   ingredients: e.target.ingredients.value,
-  //   //   directions: e.target.directions.value,
-  //   //   image: e.target.image.value
-  //   // }
-  //   // recipes.push(addedRecipe)
-  //   // setRecipes(recipes);
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-  //   var urlencoded = new URLSearchParams();
-  //   urlencoded.append("name", "Test Name");
-  //   urlencoded.append("ingredients", "Test Ingredients");
-  //   urlencoded.append("directions", "Test Directions");
-  //   urlencoded.append("description", "Test Description");
-  //   urlencoded.append("image", "./images/food1.png");
-
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: urlencoded,
-  //     redirect: 'follow'
-  //   };
-
-  //   fetch("/api/addRecipe", requestOptions)
-  //     .then(response => response.json())
-  //     .then(setRecipes)
-  //     .catch(error => console.log('error', error));
-  //   }
