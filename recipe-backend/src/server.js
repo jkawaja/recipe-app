@@ -2,16 +2,31 @@ import express from 'express';
 import { MongoClient } from 'mongodb';
 import bodyParser from 'body-parser';
 
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' })
-
 const app = express();
+const multer = require('multer');
+
 
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false}))
 
 const port = 4000;
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'recipe-frontend/public/images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+
+const upload = multer({storage: storage });
+
+app.post("/api/uploadFile", upload.single('file'), (req, res) => {
+  
+  res.json({ message: 'File uploaded successfully!' })
+});
 
 
 app.get('/api/recipes', async (req, res) => {
@@ -46,13 +61,6 @@ app.post('/api/addRecipe', async (req, res) => {
   res.json(data);
 })
 
-// app.post('/api/addImage', upload.single('recipes'), async (req, res, next) => {
-//   const client = new MongoClient("mongodb://127.0.0.1:27017");
-//   await client.connect();
-//   const db = client.db('react-recipe-db');
-//   // req.file is the `avatar` file
-//   // req.body will hold the text fields, if there were any
-// })
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
