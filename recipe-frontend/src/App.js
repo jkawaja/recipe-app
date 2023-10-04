@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
 import { Link, Route, Routes } from "react-router-dom";
-import { Navbar, Nav, Card, FormControl, Button } from 'react-bootstrap'
+import { Navbar, Nav, Card, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Home() {
