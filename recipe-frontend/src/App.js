@@ -2,13 +2,17 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { RecipeList } from "./Recipe";
 import { Link, Route, Routes } from "react-router-dom";
+import { Navbar, Nav, Card, FormControl, Button } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Home() {
   return (
     <div>
-      <nav>
-        <Link to="/addrecipe">Add Recipe</Link>
-      </nav>
+      <Navbar fixed="top" color="dark" light expand="xs" className="border-bottom border-gray bg-white" style={{ height: 80 }}>
+      <Nav className="m-auto">
+        <Link className="me-auto" to="/addrecipe">Add Recipe</Link>
+      </Nav>
+      </Navbar>
       <h1>Recipe List</h1>
     </div>
   )
@@ -17,10 +21,14 @@ export function Home() {
 export function AddRecipe() {
   return (
     <div>
-      <nav>
+      <Navbar fixed="top" color="light" light expand="xs" className="border-bottom border-gray bg-white" style={{ height: 80 }}>
+      <Nav className="m-auto">
         <Link to="/">Recipe List</Link>
-      </nav>
+      </Nav>
+      </Navbar>
+      <Card>
       <h1>Add Recipe</h1>
+      <div class="form-label">
       <form action="/api/addRecipe" method="POST" encType="multipart/form-data" >
         <label for="name">Recipe Name: </label>
         <input type="text" name="name" id="name"></input>
@@ -38,8 +46,11 @@ export function AddRecipe() {
           <input id="recipeFileUpload" type="file" name="filename" required/>
         </label>
         <br></br>
-        <button type="submit" >Submit</button>
+        <Button type="submit" >Submit</Button>
       </form>
+      </div>
+      
+      </Card>
     </div>
   )
 }

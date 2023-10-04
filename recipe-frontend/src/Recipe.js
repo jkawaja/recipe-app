@@ -23,15 +23,14 @@ export function RecipeList({ recipes, setRecipes }) {
 function Recipe({ name, ingredients, directions, description, image, recipes, setRecipes}) { 
   return ( 
     <>
-      
-        <Card className="mb-3" style={{ width: '18rem' }}>
+        <Card background="dark" border="danger" className="mb-3" style={{ width: '25rem' }}>
         <Card.Img fluid width={100} style={{ marginTop: '15px' }} variant="top" src={"./images/"+image} alt="This is a dish."/>
         <Card.Body>
-        <Card.Title>{name}</Card.Title>
-          <Card.Text> {description}</Card.Text>
+        <Card.Header>{name}</Card.Header>
+          <Card.Text className="fs-5"> {description}</Card.Text>
           <ListGroup variant="flush">
-            <ListGroup.Item>Ingredients: {ingredients}</ListGroup.Item>
-            <ListGroup.Item>Directions: {directions}</ListGroup.Item>
+            <ListGroup.Item className="fs-6">Ingredients: {ingredients}</ListGroup.Item>
+            <ListGroup.Item className="fs-6">Directions: {directions}</ListGroup.Item>
           </ListGroup>        
       <Button onClick={ () => {
               var myHeaders = new Headers();
