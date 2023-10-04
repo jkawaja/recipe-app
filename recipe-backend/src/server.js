@@ -2,17 +2,28 @@ import express from 'express';
 import { MongoClient } from 'mongodb';
 import bodyParser from 'body-parser';
 import multer from 'multer';
+import path from 'path';
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false}))
+app.use(express.static(path.join(__dirname, '../build')));
+
+app.get(/^(?!\/api).+/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+
 
 const port = 4000;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '../recipe-frontend/public/images');
+    cb(null, './recipe-backend/public/images');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname);
